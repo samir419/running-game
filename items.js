@@ -37,6 +37,7 @@ class Item{
 const items=[
     {
         name:'pogostick',
+        price:2,
         duration:0,
         instant_use:false,
         color:'green',
@@ -49,6 +50,7 @@ const items=[
     },
     {
         name:'booster',
+        price:10,
         duration:500,
         instant_use:true,
         color:'red',
@@ -75,6 +77,7 @@ const items=[
     },
     {
         name:'flowstate',
+        price:2,
         duration:100,
         instant_use:true,
         color:'red',
@@ -101,6 +104,7 @@ const items=[
     },
     {
         name:'timeslow',
+        price:2,
         duration:200,
         instant_use:false,
         color:'blue',
@@ -120,6 +124,7 @@ const items=[
     },
     {
         name:'phantom dash',
+        price:1,
         duration:10,
         instant_use:false,
         color:'black',
@@ -141,70 +146,8 @@ const items=[
         }
     },
     {
-        name: 'web swin #',
-        duration: 100, // until released
-        instant_use: false,
-        color: 'white',
-        rect:{ color:"rgba(255,255,255,0.15)", x:0,y:0,w:0,h:0 },
-        anchor:null,
-        length:0,
-        angle:0,
-        angularVelocity:0,
-        onuse:function(p){
-            // Attach point (mouse / aim direction / forward)
-            p.item.anchor = {
-                x: p.player.x + 300,
-                y: p.player.y - 200
-            }
-
-            p.item.length = Math.hypot(
-                p.player.x - p.item.anchor.x,
-                p.player.y - p.item.anchor.y
-            )
-
-            p.item.angle = Math.atan2(
-                p.player.y - p.item.anchor.y,
-                p.player.x - p.item.anchor.x
-            )
-
-            p.item.angularVelocity = 0
-            p.active = true
-            p.player.onGround=false
-            p.player.physics = 'swing'
-            p.game_instance.active_items.push(p)
-        },
-
-        onupdate:function(p){
-            p.duration--
-            const g = 0.6
-            const damping = 0.995
-
-            // Pendulum physics
-            p.item.angularVelocity += (-g / p.item.length) * Math.sin(p.item.angle)
-            p.item.angularVelocity *= damping
-            p.item.angle += p.item.angularVelocity
-
-            // New player position
-            p.player.x = p.item.anchor.x + Math.cos(p.item.angle) * p.item.length
-            p.player.y = p.item.anchor.y + Math.sin(p.item.angle) * p.item.length
-
-            // Update velocity for release
-            //p.player.dx = -Math.sin(p.angle) * p.item.angularVelocity * p.item.length
-            //p.player.dy =  Math.cos(p.angle) * p.item.angularVelocity * p.item.length
-
-            // Draw web
-            p.item.rect.x = p.item.anchor.x
-            p.item.rect.y = p.item.anchor.y
-            p.item.rect.w = p.player.x - p.item.anchor.x
-            p.item.rect.h = p.player.y - p.item.anchor.y
-            if(p.angle > Math.PI * 0.85||p.duration<=0){
-                p.active = false
-                p.player.physics = 'normal'
-            }
-        }
-    },
-    {
         name: 'rope',
+        price:3,
         duration: 30, // until released
         instant_use: false,
         color: 'brown',
@@ -250,5 +193,5 @@ const items=[
 ]
 
 const pickable_items = [
-    items[0],items[1],items[3],items[6]
+    items[0],items[1],items[3],items[5]
 ]

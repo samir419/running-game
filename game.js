@@ -63,8 +63,8 @@ class Game{
             this.player.update()
             this.stage.update()
             this.stage.obstacles.forEach(obj=>{
-                this.collide_and_eject(this.player, obj);
                 this.collide_and_clip(this.player, obj);
+                this.collide_and_eject(this.player, obj);
             })
             if(this.stage.cycle_has_ended){
                 this.stage.obstacles_2.forEach(obj=>{
@@ -116,7 +116,7 @@ class Game{
             if(this.player.y>1280){
                 this.event_handler.publish('game over')
             }
-            if(this.player.x<-256){
+            if(this.player.x<-456){
                 this.event_handler.publish('game over')
             }
             this.render()
@@ -163,20 +163,27 @@ class Game{
             // Resolve X
             if (dx > 0) {
                 player.x += overlapX;
+                obstacle.oncollide(this,'left')
             } else {
                 player.x -= overlapX;
+                obstacle.oncollide(this,'right')
             }
             if (player.dx !== undefined) player.dx = 0;
         } else {
             // Resolve Y
             if (dy > 0) {
                 player.y += overlapY;
+                obstacle.oncollide(this,'bottom')
             } else {
                 player.y -= overlapY;
+                obstacle.oncollide(this,'top')
                 player.onGround = true;
                 player.canJump = true;
             }
-            if (player.dy !== undefined) player.dy = 0;
+            if(obstacle.type=='normal'){
+                if (player.dy !== undefined) player.dy = 0;
+            }
+            
         }
 
         return true;
@@ -194,6 +201,7 @@ class Game{
     }
 
     collide_and_clip(player, obstacle) {
+        if(obstacle.type=='missle')return
         // only allow climbing while jumping/falling
         if (player.onGround==true||player.dy<0) return;
 
@@ -226,6 +234,10 @@ class Game{
     }
     handle_event(e){
         if(e=='game over'){
+            let amount = sessionStorage.getItem('running game coins')
+            amount+=this.coin_count
+            sessionStorage.setItem('running game coins',amount)
+            this.coin_count=0
             this.state='pause'
         }
         if(e=='enter'){
@@ -322,6 +334,14 @@ class Game{
         })
         this.items.push(item)
         
+    }
+    get_starting_items(items){
+        items.forEach(item=>{
+            let i = new Item(item,this.player,this)
+            this.usable_items.push(i)
+
+        })
+        this.display_items()
     }
     display_items(){
         let item_list = ''

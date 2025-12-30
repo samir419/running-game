@@ -49,6 +49,9 @@ class Controller{
             if(e.key=='e'){
                 this.event_handler.publish('use special')
             }
+            if(e.key=='k'){
+                this.event_handler.publish('cycle item')
+            }
             if(e.key=='Enter'){
                 if(this.last_key!=e.key){
                     this.event_handler.publish('enter')

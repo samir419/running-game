@@ -57,12 +57,21 @@ const stages = [
                 ]
             },
             {
-                cycles:5,
+                cycles:3,
                 randomized:true,
                 data:[
-                    [0,0,0,0,1,0,0,0,0,1,0,0,0],
-                    [0,0,1,0,0,1,0,0,1,0,0,0,0],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,1,0,0,1,0,0,1,0,1,0,0],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1],
+                ]
+            },
+            {
+                cycles:1,
+                randomized:false,
+                data:[
+                    [0,0,0,0,1,0,0,0,0,0,0,0,0],
+                    [0,0,1,1,1,0,0,1,1,1,1,0,0],
+                    [1,1,1,1,1,0,0,1,1,1,1,1,1],
                 ]
             }
         ]
@@ -77,29 +86,94 @@ const stages = [
         height:1080,
         patterns:[
             {
-                cycles:5,
-                randomized:true,
+                cycles:0,
+                randomized:false,
                 data:[
-                    [0,1,0,0,0,0,1,0,0,1,0,0,0],
-                    [0,0,0,0,1,0,0,0,1,0,0,0,0],
-                    [1,1,0,1,1,1,0,1,1,0,1,1,1],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1],
                 ]
             },
             {
                 cycles:5,
-                randomized:false,
+                randomized:true,
+                data:[
+                    [0,0,0,0,1,0,4,0,0,1,0,0,0],
+                    [0,0,1,0,0,1,0,0,1,0,0,0,0],
+                    [1,1,1,1,1,1,1,1,1,1,1,2,0],
+                ]
+            }
+        ]
+    },
+    {
+        name:'stage 4',
+        images:{
+            background:'assets/stages/stage1/bg1.jpg',
+            floor:'assets/stages/stage1/ground.jpg'
+        },
+        width:1920,
+        height:1080,
+        patterns:[
+            {
+                cycles:5,
+                randomized:true,
+                data:[
+                    [0,1,0,0,0,0,2,0,0,1,0,0,0],
+                    [0,0,0,0,1,0,0,0,1,0,0,1,0],
+                    [1,1,0,2,1,1,0,2,1,0,1,1,1],
+                ]
+            },
+            {
+                cycles:5,
+                randomized:true,
                 data:[
                     [0,0,1,1,1,0,0,1,0,1,0,0,0],
-                    [0,0,1,0,0,0,1,0,1,0,0,0,0],
-                    [1,1,0,0,1,0,1,0,1,0,0,1,1],
+                    [0,0,1,0,0,0,1,0,1,0,2,0,0],
+                    [1,1,0,0,1,0,2,0,1,0,0,1,1],
+                ]
+            }
+        ]
+    },
+    {
+        name:'stage 5',
+        images:{
+            background:'assets/stages/stage1/bg1.jpg',
+            floor:'assets/stages/stage1/ground.jpg'
+        },
+        width:1920,
+        height:1080,
+        patterns:[
+            {
+                cycles:2,
+                randomized:true,
+                data:[
+                    [0,1,0,0,3,0,2,0,0,1,0,0,0],
+                    [0,0,0,0,1,0,0,0,1,0,0,3,0],
+                    [1,1,0,2,1,1,0,2,1,3,1,1,1],
+                ]
+            },
+            {
+                cycles:1,
+                randomized:true,
+                data:[
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,1,0,0,0,1,0,0,0,0],
+                    [1,1,1,2,1,1,1,2,1,1,1,1,1],
+                ]
+            },
+            {
+                cycles:3,
+                randomized:true,
+                data:[
+                    [0,0,1,1,1,0,0,1,0,1,0,0,0],
+                    [0,0,1,3,0,0,1,0,1,3,2,0,0],
+                    [1,1,0,0,1,0,2,0,1,0,0,1,1],
                 ]
             }
         ]
     }
 ]
-
-const characters = [
-    {
+const sakura = {
         name:'sakura',
         image_path:'assets/characters/char1/',
         special:'pogostick',
@@ -110,9 +184,10 @@ const characters = [
             mid_air:1,
             falling:5
         }
-    },
-    {
+    }
+const sakura2 = {
         name:'sakura 2',
+        price:100,
         image_path:'assets/characters/char1/',
         special:'flowstate',
         state_animation_frames:{
@@ -122,9 +197,10 @@ const characters = [
             mid_air:1,
             falling:5
         }
-    },
-    {
+    }
+const jackie = {
         name:'jackie',
+        price:100,
         image_path:'assets/characters/jackie/',
         special:'flowstate',
         state_animation_frames:{
@@ -134,9 +210,10 @@ const characters = [
             mid_air:2,
             falling:2
         }
-    },
-    {
+    }
+const mai = {
         name:'mai',
+        price:70,
         image_path:'assets/characters/mai/',
         special:'rope',
         state_animation_frames:{
@@ -146,9 +223,10 @@ const characters = [
             mid_air:1,
             falling:4
         }
-    },
-    {
+    }
+const felicia = {
         name:'felicia',
+        price:30,
         image_path:'assets/characters/felicia/',
         special:'phantom dash',
         state_animation_frames:{
@@ -159,4 +237,3 @@ const characters = [
             falling:3
         }
     }
-]
