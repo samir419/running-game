@@ -237,3 +237,17 @@ const felicia = {
             falling:3
         }
     }
+
+const lilith = {
+        name:'lilith',
+        price:30,
+        image_path:'assets/characters/lilith/',
+        special:'phantom dash',
+        state_animation_frames:{
+            idle:1,
+            running:4,
+            jumping:5,
+            mid_air:1,
+            falling:6
+        }
+    }

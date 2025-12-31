@@ -234,7 +234,7 @@ class Game{
     }
     handle_event(e){
         if(e=='game over'){
-            let amount = sessionStorage.getItem('running game coins')
+            let amount = parseInt(sessionStorage.getItem('running game coins'),10)||0
             amount+=this.coin_count
             sessionStorage.setItem('running game coins',amount)
             this.coin_count=0
