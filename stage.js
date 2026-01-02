@@ -67,7 +67,7 @@ class Stage{
     }
     update_obstacle(obstacle){
         obstacle.x-=this.speed
-        if(obstacle.type=='missle'||obstacle.type=='flying platform'){
+        if(obstacle.type=='missle'||obstacle.type=='flying platform'||obstacle.type=='murder drone'){
             obstacle.onupdate(obstacle)
         }
     }
@@ -81,6 +81,10 @@ class Stage{
             ctx.drawImage(this.ground,obstacle.x,obstacle.y,obstacle.w,obstacle.h)
             if(obstacle.type=='missle'){
                 ctx.fillStyle='orange'
+                ctx.fillRect(obstacle.x,obstacle.y,obstacle.w,obstacle.h)
+            }
+            if(obstacle.type=='murder drone'){
+                ctx.fillStyle='red'
                 ctx.fillRect(obstacle.x,obstacle.y,obstacle.w,obstacle.h)
             }
             const clip = game.getClipRect(obstacle);
@@ -164,6 +168,17 @@ class Stage{
                     obj = {x:j*this.obstacle_width+offset,y:1080-this.obstacle_height*rise,w:100,h:50,type:'flying platform',
                         oncollide:function(game,dir){
                             return
+                        },
+                        onupdate:function(self){
+                            self.x-=10
+                        }
+                    }
+                    obstacles.push(obj)
+                }
+                if(pattern.data[i][j]==5){
+                    obj = {x:j*this.obstacle_width+offset,y:1080-this.obstacle_height*rise,w:100,h:50,type:'murder drone',
+                        oncollide:function(game,dir){
+                            game.event_handler.publish('game over')
                         },
                         onupdate:function(self){
                             self.x-=10

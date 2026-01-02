@@ -188,7 +188,21 @@ const items=[
                 p.active = false
             }
         }
-    }
+    },
+    {
+        name:'flash step',
+        price:2,
+        duration:0,
+        instant_use:false,
+        color:'green',
+        onuse:function(p){
+            p.player.x+=500
+            p.player.y-=200
+            p.player.dy=0
+            p.active=false
+        },
+        onupdate:function(p){return}
+    },
 
 ]
 
