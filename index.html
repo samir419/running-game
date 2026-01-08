@@ -95,7 +95,18 @@
                     <p id="nowPlaying">No track</p>
                     <audio id="audio"></audio>
                 </div>
+                <button onclick="document.getElementById('debugger').style.display='block'">display debugger</button>
+                <button onclick="document.getElementById('debugger').style.display='none'">close debugger</button>
                 <button onclick="ui.switch_window('main-menu');display_chars()" class="small-button">quit</button>
+            </div>
+            <div id="gameover-screen" class="in-game-ui" style="position: absolute;z-index: 400;width: 100%;height: 100%;background-color: rgba(0,0,0,0.2);">
+                <div style="display: flex;width: 100%;align-items: center;justify-content: center;flex-direction: column;height: 100%;">
+                    <h1>game over</h1>
+                    <h3 id="game-score">score:</h3>
+                    <button onclick="ui.switch_ui('none');game.restart()" class="small-button">restart</button>
+                    <button onclick="ui.switch_window('main-menu');display_chars()" class="small-button">back to menu</button>
+                </div>
+                
             </div>
             <div class="in-game-ui" id="none"></div>
             <div id="ui" style="position: absolute;z-index: 300;width: 100%;height: 100%;">
@@ -113,7 +124,7 @@
             </div>
             <div id="touch-screen" style="position: absolute;z-index: 200;width: 100%;height: 100%;"></div>
             <div id="game-data" style="position: absolute;z-index: 100;width: 100%;height: 100%;color: white;">
-                <div id="debugger" style="display: none;"></div>
+                <div id="debugger" style="display:none;"></div>
                 <div id="items"></div>
                 <p id="score"></p>
                 <p id="coins"></p>

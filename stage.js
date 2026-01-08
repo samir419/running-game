@@ -19,8 +19,18 @@ class Stage{
         this.speed=10
         this.base_speed=10
         this.next_pattern_set=false
+        this.bg_scroll=0
+        this.bg_scroll2=this.stage_data.width
     }
     update(){
+        this.bg_scroll-=this.speed/5
+        this.bg_scroll2-=this.speed/5
+        if(this.bg_scroll<=-this.stage_data.width){
+            this.bg_scroll=this.stage_data.width
+        }
+        if(this.bg_scroll2<=-this.stage_data.width){
+            this.bg_scroll2=this.stage_data.width
+        }
         for(let i = 0; i<this.obstacles.length; i++){
             let obstacle = this.obstacles[i]
             this.update_obstacle(obstacle)
@@ -72,7 +82,8 @@ class Stage{
         }
     }
     draw(ctx,game){
-        ctx.drawImage(this.bg,0,0,this.stage_data.width,this.stage_data.height)
+        ctx.drawImage(this.bg,this.bg_scroll,0,this.stage_data.width,this.stage_data.height)
+        ctx.drawImage(this.bg,this.bg_scroll2,0,this.stage_data.width,this.stage_data.height)
         this.obstacles.forEach(obstacle=>{
             if(obstacle.type=='bouncer'){
                 ctx.fillStyle='orange'
@@ -100,6 +111,10 @@ class Stage{
                 ctx.drawImage(this.ground,obstacle.x,obstacle.y,obstacle.w,obstacle.h)
                     if(obstacle.type=='missle'){
                     ctx.fillStyle='orange'
+                    ctx.fillRect(obstacle.x,obstacle.y,obstacle.w,obstacle.h)
+                }
+                if(obstacle.type=='murder drone'){
+                    ctx.fillStyle='red'
                     ctx.fillRect(obstacle.x,obstacle.y,obstacle.w,obstacle.h)
                 }
                 const clip = game.getClipRect(obstacle);
@@ -186,6 +201,7 @@ class Stage{
                     }
                     obstacles.push(obj)
                 }
+                
                 
             }
         }

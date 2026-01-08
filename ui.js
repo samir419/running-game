@@ -30,7 +30,7 @@ class UI{
     }
     handle_event(e){
         if(e=='game over'){
-            this.switch_ui('pause')
+            this.switch_ui('gameover-screen')
         }
         if(e=='enter'){
             if(this.current_ui=='none'){

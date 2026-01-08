@@ -239,6 +239,7 @@ class Game{
             sessionStorage.setItem('running game coins',amount)
             this.coin_count=0
             this.state='pause'
+            document.getElementById('game-score').textContent=`score: ${this.score}`
         }
         if(e=='enter'){
             if(this.state=='pause'){
