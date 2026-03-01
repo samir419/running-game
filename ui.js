@@ -10,7 +10,7 @@ class UI{
         let windows = document.querySelectorAll('.window')
         for(let i=0;i<windows.length;i++){
             if(windows[i].id==id){
-                windows[i].style.display='block'
+                windows[i].style.display='flex'
                 this.current_window=id
             }else{
                 windows[i].style.display='none'

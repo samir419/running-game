@@ -69,6 +69,9 @@ class Player {
         if (this.dx > 0) {
             this.dx -= 1.5
         }
+         if (this.dx < 0) {
+            this.dx += 1.5
+        }
         if (this.x < 250) {
             this.x += 2
         }

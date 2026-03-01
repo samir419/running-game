@@ -1,8 +1,8 @@
 :root {
-  --primary: rgb(237,28,36); /* 10% buttons,links,logo*/
-  --secondary:rgb(37, 37, 37); /* 30% cards, sections*/
+  --primary: gray; /* 10% buttons,links,logo*/
+  --secondary:rgb(137, 137, 137); /* 30% cards, sections*/
   --accent:rgb(255, 255, 255);/* highlights, icons*/
-  --neutral:#113F8C;/* 60% background*/
+  --neutral:black;/* 60% background*/
   --neutral-2:rgb(255, 255, 255);/*text*/
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -10,7 +10,6 @@
 body{
     background-color: var(--neutral);
     color: var(--neutral-2);
-    background-image: url('assets/N.png');
 }
 
 .flex{display: flex}
@@ -57,7 +56,6 @@ body{
 .accent-bg{background-color: var(--accent);}
 .neutral-bg{background-color: var(--neutral);}
 .neutral-2-bg{background-color: var(--neutral-2);}
-.img-bg{background-image: url('assets/N.png');}
 
 .rounded{border-radius: 25px;}
 .rounded-10{border-radius: 5px;}
