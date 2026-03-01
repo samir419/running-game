@@ -1,0 +1,85 @@
+:root {
+  --primary: rgb(237,28,36); /* 10% buttons,links,logo*/
+  --secondary:rgb(37, 37, 37); /* 30% cards, sections*/
+  --accent:rgb(255, 255, 255);/* highlights, icons*/
+  --neutral:#113F8C;/* 60% background*/
+  --neutral-2:rgb(255, 255, 255);/*text*/
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background-color: var(--neutral);
+    color: var(--neutral-2);
+    background-image: url('assets/N.png');
+}
+
+.flex{display: flex}
+
+.row,.row-col{flex-direction:row;}
+.column,.col-row{flex-direction:column}
+
+.wrappable{flex-wrap: wrap;}
+.scrollable-y{overflow-y:auto;}
+
+.justify-center{justify-content: center;}
+.align-center{align-items:center;}
+.center{
+    justify-content: center;
+    align-items: center;
+}
+
+.one{flex:1;}
+.two{flex:2;}
+.three{flex:3;}
+
+.padding{padding: 10px;}
+.auto-padding{padding: auto;}
+.space-around{align-content: space-around;}
+.gap{gap: 10px;}
+.outline{border: solid var(--primary);}
+.margin{margin: auto;}
+.margin-10{margin: 10px;}
+
+.absolute{position: absolute;}
+.relative{position: relative;}
+
+.priority-1{z-index: 100;}
+.priority-2{z-index: 50;}
+
+.primary{color: var(--primary);}
+.secondary{color: var(--secondary);}
+.accent{color: var(--accent);}
+.neutral{color: var(--neutral);}
+.neutral-2{color: var(--neutral-2);}
+
+.primary-bg{background-color: var(--primary);}
+.secondary-bg{background-color: var(--secondary);}
+.accent-bg{background-color: var(--accent);}
+.neutral-bg{background-color: var(--neutral);}
+.neutral-2-bg{background-color: var(--neutral-2);}
+.img-bg{background-image: url('assets/N.png');}
+
+.rounded{border-radius: 25px;}
+.rounded-10{border-radius: 5px;}
+.border{border:solid;}
+.borderless{border: none;}
+
+.screen{width: 100vw;height: 100vh;}
+.full{width:100%;height:100%}
+.full-width{width: 100%;}
+.full-height{height: 100%;}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 700px) {
+   .row-col{flex-direction: column;}
+   .col-row{flex-direction: row;}
+}
+
+
+.box{
+    width: 180px;
+    height: 180px;
+}

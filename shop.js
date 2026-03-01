@@ -1,6 +1,6 @@
 let coins = sessionStorage.getItem('running game coins')?parseInt(sessionStorage.getItem('running game coins'),10):0
 let starting_items = []
-let starting_characters = [sakura,lilith]
+let starting_characters = sessionStorage.getItem('running game chars')?JSON.parse(sessionStorage.getItem('running game chars')):[sakura,lilith]
 document.getElementById('shop-coins').innerHTML=`coins:${coins}`
 chars=[
     felicia,mai,jackie,sakura2
@@ -18,6 +18,7 @@ chars.forEach(char => {
             coins-=char.price
             sessionStorage.setItem('running game coins',coins)
             starting_characters.push(char)
+            sessionStorage.setItem('running game chars', JSON.stringify(starting_characters))
             alert('item purchases')
             document.getElementById('shop-coins').innerHTML=`coins:${coins}`
         }

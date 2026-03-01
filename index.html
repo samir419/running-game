@@ -1,10 +1,11 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .main{
+        .main {
             display: flex;
             width: 100vw;
             height: 100vh;
@@ -13,84 +14,96 @@
             justify-content: center;
             flex-direction: column;
         }
-        .window{
+
+        .window {
             width: 100%;
             max-width: 1080px;
-            background-color: rgba(255,0,0,0.2);
+            background-color: rgba(255, 0, 0, 0.2);
         }
-        .in-game-ui{
+
+        .in-game-ui {
             display: none;
         }
-        canvas{
+
+        canvas {
             width: 100%;
         }
+
         #ui {
-            pointer-events: none;   /* ignore all touch/mouse events */
+            pointer-events: none;
+            /* ignore all touch/mouse events */
         }
 
         #ui button {
-            pointer-events: auto;   /* buttons still receive events */
+            pointer-events: auto;
+            /* buttons still receive events */
         }
 
         #touch-screen {
-            pointer-events: auto;   /* receives touch events normally */
+            pointer-events: auto;
+            /* receives touch events normally */
         }
-        button{
+
+        button {
             width: 75px;
             height: 50px;
             cursor: pointer;
         }
+
         @media (max-width: 600px) {
-            button{
+            button {
                 width: auto;
                 height: 30px;
             }
         }
-        
     </style>
+    <meta name="theme-color" content="#808080">
 </head>
+
 <body>
     <div class="main" id="main">
         <div class="window" id="main-menu">
             <div style="display: flex;width: 100%;align-items: center;justify-content: center;">
-                <button onclick="ui.switch_window('stage-select');">start</button>
+                <button onclick="ui.switch_window('stage-select');">startt</button>
             </div>
         </div>
-         <div class="window" id="stage-select">
+        <div class="window" id="stage-select">
             <h1>stage select</h1>
             <div id="stage-display"></div>
             <button onclick="ui.switch_window('shop')">shop</button>
         </div>
-         <div class="window" id="character-select">
-                <h1>character select</h1>
-                <div id="char-display"></div>
-            </div>
-         <div class="window" id="pause-menu">
-                
+        <div class="window" id="character-select">
+            <h1>character select</h1>
+            <div id="char-display"></div>
         </div>
-         <div class="window" id="shop">
-                <h1>shop</h1>
-                <div id="shop-coins"></div>
-                <h2>items and moves</h2>
-                <div id="item-list"></div>
-                <h2>characters</h2>
-                <div id="character-list"></div>
-                <button onclick="ui.switch_window('stage-select')">exit</button>
+        <div class="window" id="pause-menu">
+
+        </div>
+        <div class="window" id="shop">
+            <h1>shop</h1>
+            <div id="shop-coins"></div>
+            <h2>items and moves</h2>
+            <div id="item-list"></div>
+            <h2>characters</h2>
+            <div id="character-list"></div>
+            <button onclick="ui.switch_window('stage-select')">exit</button>
         </div>
         <div class="window" id="game" style="position: relative;">
-            <div id="pause" class="in-game-ui" style="position: absolute;z-index: 400;width: 100%;height: 100%;background-color: rgba(0,0,0,0.2);">
+            <div id="pause" class="in-game-ui"
+                style="position: absolute;z-index: 400;width: 100%;height: 100%;background-color: rgba(0,0,0,0.2);">
                 <h1>pause menu</h1>
                 <button onclick="event_handler.publish('enter')" class="small-button">resume</button>
                 <button onclick="ui.switch_ui('none');game.restart()" class="small-button">restart</button>
-                <button onclick="document.getElementById('game').requestFullscreen()" class="small-button">fullscreen</button>
+                <button onclick="document.getElementById('game').requestFullscreen()"
+                    class="small-button">fullscreen</button>
                 <div style="display: flex;flex-direction: column;">
                     <input type="file" id="files" accept="audio/*" multiple>
                     <div style="display: flex;">
-                    <button id="prev">⏮</button>
-                    <button id="play">▶</button>
-                    <button id="next">⏭</button>
-                    <button id="shuffle">Shuffle OFF</button>
-                    <button id="mute">🔊</button>
+                        <button id="prev">⏮</button>
+                        <button id="play">▶</button>
+                        <button id="next">⏭</button>
+                        <button id="shuffle">Shuffle OFF</button>
+                        <button id="mute">🔊</button>
                     </div>
                     <p id="nowPlaying">No track</p>
                     <audio id="audio"></audio>
@@ -99,14 +112,17 @@
                 <button onclick="document.getElementById('debugger').style.display='none'">close debugger</button>
                 <button onclick="ui.switch_window('main-menu');display_chars()" class="small-button">quit</button>
             </div>
-            <div id="gameover-screen" class="in-game-ui" style="position: absolute;z-index: 400;width: 100%;height: 100%;background-color: rgba(0,0,0,0.2);">
-                <div style="display: flex;width: 100%;align-items: center;justify-content: center;flex-direction: column;height: 100%;">
+            <div id="gameover-screen" class="in-game-ui"
+                style="position: absolute;z-index: 400;width: 100%;height: 100%;background-color: rgba(0,0,0,0.2);">
+                <div
+                    style="display: flex;width: 100%;align-items: center;justify-content: center;flex-direction: column;height: 100%;">
                     <h1>game over</h1>
                     <h3 id="game-score">score:</h3>
                     <button onclick="ui.switch_ui('none');game.restart()" class="small-button">restart</button>
-                    <button onclick="ui.switch_window('main-menu');display_chars()" class="small-button">back to menu</button>
+                    <button onclick="ui.switch_window('main-menu');display_chars()" class="small-button">back to
+                        menu</button>
                 </div>
-                
+
             </div>
             <div class="in-game-ui" id="none"></div>
             <div id="ui" style="position: absolute;z-index: 300;width: 100%;height: 100%;">
@@ -114,18 +130,20 @@
                     <div style="display: flex; width: 100%;justify-content: end;">
                         <button onclick="event_handler.publish('enter')" class="small-button">pause</button>
                     </div>
-                    <div style="position: absolute;bottom: 0;display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                    <div
+                        style="position: absolute;bottom: 0;display: flex;flex-direction: row;justify-content: center;align-items: center;">
                         <button onclick="event_handler.publish('use item')" class="small-button">use item</button>
                         <button onclick="event_handler.publish('cycle item')" class="small-button">cycle items</button>
                     </div>
                 </div>
-                
-                
+
+
             </div>
             <div id="touch-screen" style="position: absolute;z-index: 200;width: 100%;height: 100%;"></div>
             <div id="game-data" style="position: absolute;z-index: 100;width: 100%;height: 100%;color: white;">
                 <div id="debugger" style="display:none;"></div>
                 <div id="items"></div>
+                <p id="high-score"></p>
                 <p id="score"></p>
                 <p id="coins"></p>
             </div>
@@ -142,87 +160,90 @@
     <script src="controls.js"></script>
     <script src="audio.js"></script>
     <script>
-        class Event_handler{
-            constructor(){
+        class Event_handler {
+            constructor() {
                 this.listeners = [];
             }
-            publish(event){
-                this.listeners.forEach(l=>{
+            publish(event) {
+                this.listeners.forEach(l => {
                     l.handle_event(event)
                 })
             }
 
         }
-        
-        let event_handler = new Event_handler();
-        const canvas = document.getElementById("gameCanvas");
-        let selected_level
-        let selected_player
-        let ui = new UI();
-        ui.switch_window('main-menu')
-        let game 
-        let controller = new Controller()
-        ui.subscribe(event_handler)
-        controller.subscribe(event_handler)
-        for(let i = 0; i<stages.length;i++){
-            let btn = document.createElement('button')
-            let thumbnail = document.createElement('img')
-            thumbnail.src=stages[i].images.background
-            thumbnail.height=100;thumbnail.width=120
-            btn.appendChild(thumbnail)
-            btn.textContent=stages[i].name
-            btn.onclick=()=>{
-                if(game){
-                    selected_level=stages[i]
-                    ui.switch_window('character-select')
-                    game.stage = new Stage(selected_level,game) 
-                    return
-                }
-                selected_level=stages[i]
-                ui.switch_window('character-select')
-            }
-            btn.style = 'height:100px;width:120px'
-            document.getElementById('stage-display').append(btn)
-        }
-        function display_chars(){
-            let coins = sessionStorage.getItem('running game coins')?sessionStorage.getItem('running game coins'):0
-            document.getElementById('shop-coins').innerHTML=`coins:${coins}`
-            document.getElementById('char-display').innerHTML=''
-            for(let i = 0; i<starting_characters.length;i++){
+        function display_chars() {
+            let coins = sessionStorage.getItem('running game coins') ? sessionStorage.getItem('running game coins') : 0
+            document.getElementById('shop-coins').innerHTML = `coins:${coins}`
+            document.getElementById('char-display').innerHTML = ''
+            for (let i = 0; i < starting_characters.length; i++) {
                 let btn = document.createElement('button')
-                btn.textContent=starting_characters[i].name
-                btn.onclick=()=>{
-                    if(game){
-                        selected_player=starting_characters[i]
+                btn.textContent = starting_characters[i].name
+                btn.onclick = () => {
+                    if (game) {
+                        selected_player = starting_characters[i]
                         ui.switch_window('game')
                         ui.switch_ui('none')
                         game.player = new Player(selected_player)
                         game.set_player()
                         game.restart()
-                         game.get_starting_items(starting_items)
+                        game.get_starting_items(starting_items)
                         return
                     }
-                    selected_player=starting_characters[i]
-                    game = new Game(canvas,selected_level,selected_player)
+                    selected_player = starting_characters[i]
+                    game = new Game(canvas, selected_level, selected_player)
                     game.subscribe(event_handler)
                     ui.switch_window('game')
                     ui.switch_ui('none')
                     game.get_starting_items(starting_items)
                     mainloop();
-                    game.state='running'
-                    audio.src='newtheme.mp3'
+                    game.state = 'running'
+                    audio.src = 'newtheme.mp3'
                     audio.play()
                 }
                 btn.style = 'height:100px;width:120px'
                 document.getElementById('char-display').append(btn)
             }
         }
+        let event_handler = new Event_handler();
+        const canvas = document.getElementById("gameCanvas");
+        let selected_level
+        let selected_player
+        let ui = new UI();
+        ui.switch_window('main-menu')
+        let game
+        let controller = new Controller()
+        ui.subscribe(event_handler)
+        controller.subscribe(event_handler)
+        for (let i = 0; i < stages.length; i++) {
+            let btn = document.createElement('button')
+            let thumbnail = document.createElement('img')
+            thumbnail.src = stages[i].images.background
+            thumbnail.height = 100; thumbnail.width = 120
+            btn.appendChild(thumbnail)
+            btn.textContent = stages[i].name
+            btn.onclick = () => {
+                display_chars()
+                if (game) {
+                    selected_level = stages[i]
+                    ui.switch_window('character-select')
+                    game.stage = new Stage(selected_level, game)
+                    return
+                }
+                selected_level = stages[i]
+                ui.switch_window('character-select')
+            }
+            btn.style = 'height:100px;width:120px'
+            document.getElementById('stage-display').append(btn)
+        }
+
         display_chars()
-        function mainloop(){
+        function mainloop() {
             controller.handle_controls()
             game.run()
             requestAnimationFrame(mainloop)
         }
+
     </script>
 </body>
+
 </html>
