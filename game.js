@@ -258,7 +258,7 @@ class Game {
             }
         }
         if (this.state != 'running') return
-        if (e == 'jump' || e == 'single tap') {
+        if (e == 'jump' || e == 'swipe up') {
             this.player.jump(-30)
         }
 
@@ -268,7 +268,7 @@ class Game {
         if (e == 'back dash' || e == 'swipe left') {
             this.player.dash(-1)
         }
-        if (e == 'hop') {
+        if (e == 'hop' || e == 'single tap') {
             this.player.jump(-25)
         }
 
@@ -309,7 +309,7 @@ class Game {
                 this.player.y += 15
             }
         }
-        if (e == 'use special' || e == 'swipe up') {
+        if (e == 'use special') {
             if (this.player.canusespecial) {
                 let spmove = new Item(this.player.special, this.player, this)
                 spmove.use()

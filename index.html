@@ -57,6 +57,11 @@
             cursor: pointer;
         }
 
+        .big-button{
+            width: 100px;
+            height: 75px;
+        }
+
         @media (max-width: 600px) {
             button {
                 width: auto;
@@ -136,6 +141,7 @@
                         </div>
                         <div
                             style="position: absolute;bottom: 0;display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                            <button onclick="event_handler.publish('use special')" class="big-button">special</button>
                             <button onclick="event_handler.publish('use item')" class="small-button">use item</button>
                             <button onclick="event_handler.publish('cycle item')" class="small-button">cycle items</button>
                         </div>
