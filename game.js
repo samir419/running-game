@@ -269,7 +269,7 @@ class Game {
             this.player.dash(-1)
         }
         if (e == 'hop' || e == 'single tap') {
-            this.player.jump(-25)
+            this.player.jump(-20)
         }
 
         if (e == 'holding jump') {
