@@ -258,7 +258,7 @@ class Game {
             }
         }
         if (this.state != 'running') return
-        if (e == 'jump' || e == 'swipe up') {
+        if (e == 'jump' || e == 'single tap') {
             this.player.jump(-30)
         }
 
@@ -268,7 +268,7 @@ class Game {
         if (e == 'back dash' || e == 'swipe left') {
             this.player.dash(-1)
         }
-        if (e == 'hop' || e == 'single tap') {
+        if (e == 'hop') {
             this.player.jump(-20)
         }
 
